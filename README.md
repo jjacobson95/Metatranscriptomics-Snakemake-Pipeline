@@ -16,7 +16,10 @@ Steps:
 7) Sort files using **samtools**  
 8) Generate files ready for DEA or PEA using **htseq-count** with **stranded=reverse**    
   
-This step may be added to pipeline:  
+  
+  
+### Prepare files for R using bash:  
+This step may be added to pipeline.    
 To title and join all htseq files into a compact tsv prior to R analysis, consider using the following bash code:  
   
 Add header to htseq files. This header is the file name (ie. sample name).   
