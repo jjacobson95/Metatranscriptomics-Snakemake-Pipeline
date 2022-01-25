@@ -16,6 +16,7 @@ Steps:
 7) Sort files using **samtools**  
 8) Generate files ready for DEA or PEA using **htseq-count** with **stranded=reverse**    
   
+  <br/>
   
   
 ### Prepare files for R using bash:  
