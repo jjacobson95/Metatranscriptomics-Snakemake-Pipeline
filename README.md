@@ -7,8 +7,8 @@ Metatranscriptomics pipeline to output data ready for differential expression an
 Pipeline Now Functional.  
   
 Steps:  
-1)‎ Deinterleave with **BBmap**. 
-2) Quality Check and Trimming with **fastp**. 
+1)‎ Deinterleave with **BBmap**   
+2) Quality Check and Trimming with **fastp**   
 3) Remove rRNA using **SortMeRNA** aligner and rRNA reference files  
 4) Concatenate all genome assembly and all annotation files (seperately)  
 5) Create STAR database using **STAR --runMode genomeGenerate**  
