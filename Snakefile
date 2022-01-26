@@ -3,11 +3,13 @@ from importlib.metadata import files
 from lib2to3.pgen2.token import STAR
 from time import time
 
-
+#samples currently hardcoded
 SAMPLES = ["Chrtob3_D6_0mM_1_FD", "Chrtob3_D6_16mM_1_FD", "Chrtob3_D6_32mM_1_FD"]
 
+#threads currently hardcoded
 THREADS = 10
 
+#expected outputs
 rule all:
     input:
         expand("OD_summary_deinterleave/{sample}_deinterleave_summary.txt", sample = SAMPLES),
@@ -30,6 +32,7 @@ rule deinterleave:
         "OD_summary_deinterleave/{sample}_deinterleave_summary.txt"
     shell:
         """
+	module load bbmap
         reformat.sh \
         in={input} \
         out1={output[0]} \
@@ -76,6 +79,7 @@ rule fastp:
         1>> {output[4]}
         """
 
+#download rRNA fasta files first.
 rule sortmerna:
     "Remove rRNA"
     input:
@@ -151,8 +155,6 @@ rule star_database:
         --sjdbGTFfile {input[1]} 2> {output[0]}
         """
 
-# STAR - Alignment
-
 
 rule star_alignment:
     "Run STAR Alignment"
@@ -207,13 +209,3 @@ rule htseq:
         """
 
 
-# for f in {"Chrtob3_D6_0mM_1_FD","Chrtob3_D6_16mM_1_FD","Chrtob3_D6_32mM_1_FD","Chrtob5_D6_16mM_1_FD"}; do sed -i "1i File\t$f" test_area/$f; done
-
-#for f in *; do sed -i "1i File\t$f" $f; done
-#         function multijoin() { 
-#         out=$1 
-#         shift 1 
-#         cat $1 | awk '{print $1}' > $out 
-#         for f in $*; do join $out $f > tmp; mv tmp $out; done \
-#             }
-#         multijoin ../OD_DESeq_input/DESeq2_counts_file.tsv *
